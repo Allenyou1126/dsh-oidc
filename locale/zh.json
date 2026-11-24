@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "OIDC 单点登录",
+    "description": "通过 Zitadel Web + PKCE（无需 client secret）登录 Web GUI，让远程浏览器无需 OAuth 反向代理即可访问 DSH。可选 role claim 兜底；被允许的用户拥有 owner 权限。"
+  }
+}

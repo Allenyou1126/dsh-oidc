@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "OIDC sign-in",
+    "description": "Signs the Web GUI in through Zitadel Web + PKCE (no client secret), so remote browsers reach DSH without an OAuth reverse proxy. Optional role-claim guard; every admitted user has owner access."
+  }
+}

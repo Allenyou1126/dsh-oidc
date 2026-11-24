@@ -1,0 +1,55 @@
+{
+  "name": "dsh-oidc",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OIDC SSO sign-in for DeepSeek Harness Web through Zitadel Web + PKCE, with no client secret and no OAuth reverse proxy.",
+  "license": "MIT",
+  "author": "Allenyou",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Allenyou1126/dsh-oidc.git"
+  },
+  "homepage": "https://github.com/Allenyou1126/dsh-oidc#readme",
+  "bugs": {
+    "url": "https://github.com/Allenyou1126/dsh-oidc/issues"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "oidc",
+    "sso",
+    "zitadel",
+    "pkce"
+  ],
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "cordis.patch.yml",
+    "locale",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": "^22.19 || >=24",
+    "dsh": "^0.2.3-alpha.2"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "check": "node --check src/*.js && node --check test/*.js && node --test test/*.test.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

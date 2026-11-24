@@ -1,0 +1,10 @@
+# dsh-oidc bundle patch: mount the Host authentication row.
+#
+# Configuration is resolved from DSH_OIDC_* environment variables at runtime,
+# or by overriding this row's config in the profile patch. The row is inserted
+# with no config so the package can be installed and inspected before an IdP
+# is configured; until then it stays inactive.
+
+- insert:
+    - id: dsh-oidc
+      name: 'dsh-oidc'

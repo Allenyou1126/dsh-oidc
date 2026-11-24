@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+  <defs>
+    <mask id="dsh-oidc-keyhole">
+      <rect width="36" height="36" fill="#ffffff"/>
+      <circle cx="18" cy="14.8" r="3.4" fill="#000000"/>
+      <path d="M16.6 17.4h2.8l1.3 6.6h-5.4z" fill="#000000"/>
+    </mask>
+  </defs>
+  <path
+    d="M18 3.2 29.2 7v10.4c0 7-4.7 12.7-11.2 15.4C11.5 30.1 6.8 24.4 6.8 17.4V7z"
+    fill="#2563eb"
+    mask="url(#dsh-oidc-keyhole)"
+  />
+  <path
+    d="M18 7.1 25.6 9.7v7.7c0 4.6-3 8.3-7.6 10.3-4.6-2-7.6-5.7-7.6-10.3V9.7z"
+    fill="none"
+    stroke="#93c5fd"
+    stroke-width="1.2"
+  />
+</svg>
