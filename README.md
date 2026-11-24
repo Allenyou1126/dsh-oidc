@@ -20,11 +20,14 @@ DeepSeek Harness 0.2.3-alpha.2 的最小 OIDC SSO 插件：用 **Zitadel Web + P
 ## 安装
 
 ```sh
-# 在 DSH 所在机器上，安装本地 bundle
+# 从 GitHub 安装
+dsh plugin --profile <profile> add github:Allenyou1126/dsh-oidc
+
+# 或安装本地 checkout
 dsh plugin --profile <profile> add /absolute/path/to/dsh-oidc
 ```
 
-或在 **Plugins → Add plugin** 选择本地目录。安装后插件行出现；未设置 `DSH_OIDC_ISSUER` / `DSH_OIDC_CLIENT_ID` 时保持 inactive，不拦截任何请求。
+或在 **Plugins → Add plugin** 填写 `github:Allenyou1126/dsh-oidc` 或选择本地目录。安装后插件行出现；未设置 `DSH_OIDC_ISSUER` / `DSH_OIDC_CLIENT_ID` 时保持 inactive，不拦截任何请求。
 
 ## 配置
 
