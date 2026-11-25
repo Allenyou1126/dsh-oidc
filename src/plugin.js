@@ -51,11 +51,6 @@ function isIndexPath(pathname) {
   return pathname === '/' || pathname === '/index.html'
 }
 
-function wantsHtml(headers) {
-  if (headerValue(headers, 'sec-fetch-dest') === 'document') return true
-  return (headerValue(headers, 'accept') ?? '').includes('text/html')
-}
-
 function isNavigation(headers, base) {
   const origin = headerValue(headers, 'origin')
   if (origin !== undefined && origin !== base.origin) return false
@@ -463,10 +458,11 @@ export function apply(ctx, rawConfig, env = process.env) {
         await next()
         return
       }
-      if (!wantsHtml(request.headers)) {
-        await next()
-        return
-      }
+      // Any unauthenticated GET/HEAD for the app document starts sign-in. An
+      // installed PWA or a WebView may request `/` without `Accept: text/html`
+      // or Fetch Metadata; DSH's source fence answers such a request with a
+      // plain 403 before the page is served, so the document must be
+      // redirected here, before routing and admission.
       const target = new URL('auth/login', base())
       target.searchParams.set('returnTo', url.pathname + url.search)
       sendRedirect(response, target.href)

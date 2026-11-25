@@ -214,6 +214,19 @@ test('inactive configuration registers no middleware or provider', async () => {
   assert.equal(response.statusCode, 200)
 })
 
+test('an index request without HTML markers still starts sign-in', async (t) => {
+  const { app } = await activeApp(t)
+  const response = new FakeResponse()
+  const result = await app.dispatch(makeRequest({
+    url: '/',
+    headers: { 'sec-fetch-site': 'cross-site' },
+  }), response)
+  assert.equal(result.handled, true)
+  assert.equal(result.nextCalled, false)
+  assert.equal(response.statusCode, 302)
+  assert.equal(new URL(response.headers.location).pathname, '/auth/login')
+})
+
 test('complete public-client login, provider authentication, index pass-through, and logout', async (t) => {
   const { app, mock } = await activeApp(t)
   const { response, started } = await finishLogin(app, mock, { claims: { sub: 'user-1' } })

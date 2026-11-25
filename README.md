@@ -85,7 +85,7 @@ roleClaim 有值：
 
 ## 运行行为
 
-- 未登录访问 `/`（或 `/index.html`）且是 HTML 导航 → 302 到 `/auth/login`，再 302 到 IdP。
+- 未登录访问 `/`（或 `/index.html`）→ 302 到 `/auth/login`，再 302 到 IdP。**不要求请求像 HTML 导航**：已安装的 PWA、WebView、缺少 `Accept`/`Sec-Fetch-*` 的启动请求同样会在这里被接住，而不是落到 DSH 的来源围栏变成 403。
 - IdP 回调 `GET /auth/callback` 在 DSH 的来源围栏之前处理；允许跨站顶层导航，但要求签名 state Cookie、PKCE、nonce、Host 匹配。
 - 成功后设置 `dsh-oidc-session` Cookie，并返回一个同源完成页，由页面脚本跳回应用，避免 DSH 对跨站 `Sec-Fetch-Site` 的 403。
 - `GET /auth/logout` 清除浏览器 Cookie；不做 IdP 单点登出。跨站登出被拒绝。
@@ -128,6 +128,7 @@ roleClaim 有值：
 | token 交换失败 | Zitadel 应用是否 **Web + PKCE**（Auth Method None）；redirect URI 是否精确匹配；是否误用了 Code/Post/JWT |
 | 403 `not allowed` | `roleClaim` 是否存在于 ID Token；scope/Token Settings 是否把角色放进 ID Token；`allowedRoles` 是否精确匹配（Zitadel 对象 key） |
 | 登录后回到 401/403 | Cookie `Secure` 与公开 HTTPS 是否一致；代理是否改写 Host；浏览器是否禁用了 Cookie |
+| 已安装的 PWA / WebView 打开显示 403 Forbidden | 升级到 0.1.1+：未登录的 `/`、`/index.html` 不再要求 HTML 头，会在围栏前 302 到登录页 |
 | 想完全退出 SSO | 在 IdP 侧登出；本插件不调用 end_session |
 
 ## 开发

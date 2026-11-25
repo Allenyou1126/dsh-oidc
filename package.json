@@ -1,6 +1,6 @@
 {
   "name": "dsh-oidc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "description": "OIDC SSO sign-in for DeepSeek Harness Web through Zitadel Web + PKCE, with no client secret and no OAuth reverse proxy.",
